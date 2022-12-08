@@ -52,8 +52,17 @@ def agr_rules(type_,max_length,contains):
         def inwrapper(name):
             for x in contains:
                 if type(name) == type_ and len(name) <= max_length and x in name:
-            
                     print(func(name))
+                else:
+                    if type(name) != type_:
+                        print('Invalid type')
+
+                    elif len(name) <= max_length:
+                        print('Invalid length')
+
+                    else:
+                        print('Lack of matching symbols')
+                    return False
         return inwrapper
     return wrapper
 
