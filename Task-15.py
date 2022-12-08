@@ -5,8 +5,8 @@ class Person:
         self.surname =  surname
         self.age = age
 
-    def talk(name,surname,age):
-        print(f"Hello,my name is {name} {surname} and i'm {age} years old ")
+    def talk(self):
+        print(f"Hello,my name is {self.name} {self.surname} and i'm {self.age} years old ")
 
 Person.talk('Carl','Jonshon',20)
 Person.talk('Illja','Homenko',18)
