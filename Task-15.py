@@ -6,23 +6,27 @@ class Person:
         self.age = age
 
     def talk(self):
-        print(f"Hello,my name is {self.name} {self.surname} and i'm {self.age} years old ")
+        print("Hello,my name is {} {} and i'm {} years old ".format(self.name,self.surname,self.age))
 
-Person.talk('Carl','Jonshon',20)
-Person.talk('Illja','Homenko',18)
-Person.talk('DIma','Jonshon',22)
+
+
+
+create = Person('Illja','Homenko',20)
+
+create.talk()
 
 #Task-2
 class Dog:
     def __init__(self,age):
         self.age = age
 
-    def human_age(age,age_factor= 7):
+    def human_age(self,age_factor=7):
 
-        print(age * age_factor)
+        print(self.age*age_factor)
 
+age = Dog(20)
 
-Dog.human_age(12)
+age.human_age(7)
 
 #Task-3
 class VoiceCommand:
