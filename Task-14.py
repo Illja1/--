@@ -29,8 +29,7 @@ def stop_words(words):
     def wrapper(func):
         def inwrapper(name):
             string = func(name)
-            char_remov = [i for i in words]
-            for char in char_remov:
+            for char in words:
                 string = string.replace(char, "*")
             print(string)
         return inwrapper
