@@ -91,20 +91,3 @@ controller.is_exist("TV1000")
 
 
 
-
-#V-2
-class VIPClient:
-    def __init__(self, full_name,day, balance, city,vip_level=(1,5),year=None):
-        self.full_name = full_name
-        self.year = year
-        self.balance = balance
-        self.city = city
-        self.vip_level = vip_level
-        self.day = day
-
-#V-3
-class VIPClient(Client):
-    def __init__(self, full_name,day, balance, city,vip_level=(1,5),year=None):
-        self.vip_level = vip_level
-        self.day = day
-        super().__init__(full_name, year, balance, city)
