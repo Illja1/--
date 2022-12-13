@@ -21,39 +21,29 @@ print(func(1))
 
 
 #Task-3
-nums1 = [1, 2, 3, 4, 5]
+nums1 = [1, 2, 3, 4, 5,-10,2000,-9999,110]
 
-nums2 = [1, -2, 3, -4, 5]
+nums2 = [1, -2, 3, -4,5,0,12,22]
 
 
-def choose_func(nums: list, func1, func2):
-    if nums == nums1:
-        func1 = square_nums(nums)
-        print(func1)
+def choose_func(nums: list, func1,func2):
+    if func1 == square_nums:
+        res = square_nums(nums)
+        print(res)
     else:
-        func2 = remove_negatives(nums)
-        print(func2)
-
-
-
+        res_1 = remove_negatives(nums)
+        print(res_1)
+    
 
 
 def square_nums(nums):
-
     return [num ** 2 for num in nums]
 
              
- 
-
 def remove_negatives(nums):
-
     return [num for num in nums if num > 0]
 
 
 
-
-
-
-choose_func(nums1, square_nums, remove_negatives)
-
-choose_func(nums2, square_nums, remove_negatives)
+choose_func(nums1,square_nums, remove_negatives) 
+choose_func(nums2,remove_negatives,square_nums)
