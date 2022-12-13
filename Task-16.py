@@ -71,12 +71,57 @@ m.filter_leaps([2001, 1884, 1995, 2003, 2020])
 
 
 
-
+#Task-3
 class Product:
     def __init__(self,type,name,price):
         self.type = type
         self.name = name
         self.price = price
 
-class ProductStore(Product):
-    
+
+class ProductStore:
+    def __init__(self):
+        pass
+
+    def add(self,product,amount=0):
+         
+
+
+
+    #def get_product_info(self,product_name):
+    #    if product_name == mydict.keys():
+    #        print(product_name)
+    #    else:
+    #        print('Product not found')
+
+
+
+
+
+
+p = Product('Sport', 'Football T-Shirt', 100)
+p2 = Product('Food', 'Ramen', 1.5)
+s = ProductStore()
+s.add(p, 10)
+s.add(p2, 300)
+s.get_product_info('Ramen')
+
+
+#Task-4
+
+class CustomExceptoin(Exception):
+    def __init__(self,error,message):
+        self.error = error
+        self.message = message
+        message = error
+        super().__init__(self.message)
+        with open('log.txt','a+') as f:
+            f.write(self.message)
+
+
+#sallary = int(input('Enter sallary: '))
+#if not 5000< sallary < 15000:
+#    raise CustomExceptoin(sallary,message='Invalid range')   
+
+
+
