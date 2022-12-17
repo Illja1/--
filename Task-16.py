@@ -1,3 +1,4 @@
+import enum
 #Task-1
 
 class Pesron():
@@ -73,38 +74,90 @@ m.filter_leaps([2001, 1884, 1995, 2003, 2020])
 
 #Task-3
 class Product:
-    def __init__(self,type,name,price):
+    def __init__(self,type,name,price)->list:
         self.type = type
         self.name = name
-        self.price = price
+        self.price = price+30
+
+ 
+
+    def __str__(self):
+            return f"{self.type,self.name,self.price}"
+        
+
+    def __repr__(self):
+            return self.__str__()
 
 
-class ProductStore:
+
+class ProductStore():
     def __init__(self):
-        pass
-
-    def add(self,product,amount=0):
-         
+        self.db= {}
 
 
-
-    #def get_product_info(self,product_name):
-    #    if product_name == mydict.keys():
-    #        print(product_name)
-    #    else:
-    #        print('Product not found')
+    def add(self,product,amount):
+        self.db.update({product:amount})
 
 
+    def set_discount(self,identifier, percent, identifier_type='name'):
+        q = percent/100
+        for i in self.db:
+            if identifier == i.type and identifier_type == i.name:
+                x = i.price*q
+                price_with_disc = i.price-x
+
+                print(f'New price of {i.name}: {price_with_disc}')
+
+
+    def sell_product(self,product_name, amount):
+        for value in self.db.values():
+            for i in self.db:
+                if product_name == i.name:
+                    new_amount = value-amount
+        print(f'New amount of {i.name}: {new_amount}')
+
+
+    def get_income(self):
+        x = 0
+        for i in self.db:
+            x = i.price+x   
+        print(f'Income: {x}')
+
+
+    def get_all_products(self):
+        print(self.db)
+
+
+    def get_product_info(self,product_name):
+        for i in self.db:
+            if product_name == i.name:
+                print(f'All info about product: {i.type}-{i.name}-{i.price}')
+    
 
 
 
 
-p = Product('Sport', 'Football T-Shirt', 100)
-p2 = Product('Food', 'Ramen', 1.5)
+
+
+
+p = Product('Sport','Football T-Shirt',100)
+p1 = Product('Food', 'Ramen', 20)
+p2 = Product('Sport', 'Ball', 50)
 s = ProductStore()
-s.add(p, 10)
-s.add(p2, 300)
+s.add(p,10)
+s.add(p1, 300)
+s.add(p2, 200)
+s.set_discount('Sport',10,'Football T-Shirt')
+s.set_discount('Food',20,'Ramen')
+s.set_discount('Sport',5,'Ball')
+s.sell_product('Ramen',10)
+s.sell_product('Ball',99)
+s.sell_product('Football T-Shirt',8)
+s.get_income()
+s.get_all_products()
+s.get_product_info('Football T-Shirt')
 s.get_product_info('Ramen')
+s.get_product_info('Ball')
 
 
 #Task-4
