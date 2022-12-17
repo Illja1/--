@@ -1,92 +1,73 @@
-import turtle
+class Car:
+    def __init__(self,mark,model,km,price) -> None:
+        self.mark = mark
+        self.model = model
+        self.km = km
+        self._price = price
 
-class Person:
-    def __init__(self,name):
-        self.name = name
+    def getx(self):
+            return self.mark,self.model,self.km,self._price
 
+    def setx(self, price):
+            self._price = price
+            return 
 
-    
+    def delx(self):
+            del self.mark 
+            del self.model 
+            del self.km
+            del self._price 
 
-    def activity():
-
-        raise NotImplementedError
-
-
-class P_U(Person):
-    def __init__(self, name):
-        super().__init__(name)
-
-    def activity(self):
-        
-        print(f'{self.name} зараз – красавчег ')
-
-
-class Zaluzniu(Person):
-    def __init__(self, name):
-        super().__init__(name)
-
-    def activity(self):
-        print(f'{self.name} фахівець по створенню котлів')
+    my_property  = property(getx, setx, delx, "I'm the 'x' property.")
 
 
-class Nevdaha(Person):
-    def __init__(self, name):
-        super().__init__(name)
+#p = Car('Toyota','Corola',200000,30000)
 
-    def activity(self):
-        print(f'{self.name} Politico: невдаха року')
+#del p.my_property
+#print(p.my_property)
 
 
+class Car:
+    def __init__(self,mark,model,km,price) -> None:
+        self.mark = mark
+        self.model = model
+        self.km = km
+        self._price = price
+    @property
+    def myprice(self):
+            return self.mark,self.model,self.km,self._price
+    @myprice.setter
+    def myprice(self, price):
+            self._price = price
+            return 
 
-n1 = P_U('Зеленський')
-n2 = Zaluzniu('Залужний')
-n3 = Nevdaha('путін')
-
-myList = [n1,n2,n3]
-
-for i in myList:
-    i.activity()
-
-
-
-class Shape:
-    def __init__(self,x,y,radius):
-        self.x = x
-        self.y = y
-        self.radius = radius
-
-
-    def draw_shape(self):
-        raise NotImplementedError("Subbclass...")
+    @myprice.deleter
+    def myprice(self):
+            del self.mark 
+            del self.model 
+            del self.km
+            del self._price 
 
     
+class Client:
+    def __init__(self,full_name,bal) -> None:
+          self._full_name = full_name
+          self.bal = bal
+    @property
+    def full_name(self):
+        return self._full_name
 
-#class Circle_6(Shape):
-#    def __init__(self, x, y, radius,n):
-#        super().__init__(x, y, radius)
-#        self.n = n
+    @full_name.setter
+    def full_name(self,new):
+        if isinstance(new,str):
+            x = new.split(' ')
+            if len(x) == 3:
+                print(new)
+
+            else:
+                raise Exception
 
 
-    
-class Detail:
-    def __init__(self,price):
-        self.price = price
+p = Client('Illja Homenko',200)
 
-    def __add__(self,x):
-        if isinstance(self,Detail) and isinstance(x,Detail):
-            return 'test'
-        else:
-            raise TypeError('Invalid')
-
-
-
-#a = Detail(200)
-#b = Detail(150)
-#print(a+2)
-
-def add(product,amount):
-    a = list(zip(product,range(len(amount))))
-    mydict = {product:amount for product,amount in a}
-    print(mydict)
-
-add(('Sport','Football T-Shirt',100),10)
+p.full_name = 'Illja Homenko'

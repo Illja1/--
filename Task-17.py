@@ -30,54 +30,77 @@ def u_input():
 
 
 #Task-2
+class Library:
+    def __init__(self,name) -> None:
+        self.name= name
+        self.books = []
+        self.authors = []
+
+    def new_book(self,name,year,author):
+        new_book = Book(name,year,author)
+        self.books.append(new_book)
+        self.authors.append(author)
+        Book.a_books = +1
+        return new_book
     
-class Author():
-    def __init__(self,first_name,country,date,books) -> None:
-        self.first_name = first_name
-        self.coutry = country
-        self.date = date
-        self.books = books
+    def group_by_author(Self,author):
+        return author.books
+
+    def group_by_year(self,year):
+        pass
+
+    def __repr__(self) -> str:
+        return f'{self.name}, {self.books}, {self.authors}'
+
+    
 
 
+class Book:
+    a_books = 0
 
-class Book(Author):
-    def __init__(self, first_name, country, date, books,book_name,year,author) -> None:
-        super().__init__(first_name, country, date, books)
-        self.book_name = book_name
+    def __init__(self,name,year,author) -> None:
+        self.name= name
         self.year = year
-        self.author = author
+        self.authors = author
+
+    def __repr__(self) -> str:
+        return f'{self.name}, {self.year}, {self.authors}'
+
+    def __str__(self) -> str:
+        return f'{self.name}, {self.year}, {self.authors}'
 
 
+class Author:
+    def __init__(self,name,country,bh) -> None:
+        self.name = name
+        self.country = country
+        self.bh = bh
+        self.books = []
 
-class Library(Book):
-    def __init__(self, first_name, country, date, books, book_name, year, author) -> None:
-        super().__init__(first_name, country, date, books, book_name, year, author)
-    
+    def __repr__(self) -> str:
+        return f'{self.name}, {self.country}, {self.bh}'
 
-
-    def new_book(book_name,year,author):
-        global mylist
-        mylist = {"Book name":book_name,'Year':year,'Author': author}
-        print('Book added')
-        print(mylist)
-    
-        #print(mylist)
-
-    def group_by_author():
-        srch = input('Search book by name: ')
-        for entry in mylist: 
-            if srch in entry['Author']:
-                print(mylist)
-
-    def display():
-        for i in mylist:
-            print(mylist)
+    def __str__(self) -> str:
+        return f'{self.name}, {self.country}, {self.bh}'
 
 
-Library.new_book('test',1999,'Jake')
-Library.new_book('test-1',2000,'Mike')
-Library.new_book('test-2',1999,'Jake')
-Library.display()
+author_1 = Author('Test','test','29.04.1994')
+author_2 = Author('Test-1','test-1','30.08.1995')
+lib = Library('Slavuta library')
+print(lib.new_book('name1',1999,author_1))
+print(lib.new_book('name2',1995,author_2))
+print(lib.new_book('name3',1999,author_1))
+print(lib.new_book('name4',2000,author_2))
+print(Book.a_books)
+print(author_1.books)
+print(author_2.books)
+print(lib.group_by_author(author_1))
+print(lib.group_by_author(author_2))
+print(lib.group_by_year(1999))
+
+
+   
+
 
 
 
@@ -86,42 +109,62 @@ class MyNum:
         self.value = value
         self.value1 = value1
 
-    def __add__(self, other):
-        if not isinstance(other, type(self)):
-            raise ValueError
-        return MyNum(self.value+other.value)
 
-    def __sub__(self, other):
-        if not isinstance(other, type(self)):
-            raise ValueError
-        return MyNum(self.value-other.value)
+    def __add__(self, other,value1):
+        if not isinstance(other,value1, type(self)):
+                raise ValueError
+        else:
+            r = MyNum(self.value+self.value)
+            r_1 = MyNum(other.value+other.value1)
+
+        def __str__(self):
+            return f"<MyNum: {self.value+self.value1}>"
+        
+        def __repr__(self):
+            return self.__str__()
+
+    def __sub__(self, other,value1):
+        if not isinstance(other,value1, type(self)):
+                raise ValueError
+        else:
+            r = MyNum(self.value+self.value)
+            r_1 = MyNum(other.value-other.value1)
+        
+    
+        def __str__(self):
+            return f"<MyNum: {self.value-self.value1}>"
+        
+        def __repr__(self):
+            return self.__str__()
 
     def __mul__(self, other):
         if not isinstance(other, type(self)):
             raise ValueError
-        return MyNum(self.value*other.value)
+
+        def __str__(self):
+            return f"<MyNum: {self.value*self.value1}>"
+        
+        def __repr__(self):
+            return self.__str__()
 
     def __truediv__(self, other):
         if not isinstance(other, type(self)):
             raise ValueError
-        return MyNum(self.value/other.value)
-   
+
+        def __str__(self):
+            return f"<MyNum: {self.value/self.value1}>"
     
-    def __str__(self):
-        return f"<MyNum: {self.value}>"
-    
-    def __repr__(self):
-        return self.__str__()
+        def __repr__(self):
+            return self.__str__()
 
 
 if __name__ == "__main__":
     x = MyNum(1,2)
     y = MyNum(1,4)
-    #c = MyNum(2)
-    #v =MyNum(4)
-    #print(x*c)
-    #print(y*v)
-    print(x+y)
+    print(x)
+    print(y)
+   # print(x+y)
+#   print(x+y==MyNum(3,4))
 
 
 
