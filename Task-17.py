@@ -40,15 +40,18 @@ class Library:
         new_book = Book(name,year,author)
         self.books.append(new_book)
         self.authors.append(author)
-        Book.a_books = +1
+        Book.a_books += 1
         return new_book
     
-    def group_by_author(Self,author):
-        return author.books
+    def group_by_author(self,author):
+        for i in self.books:
+            if i.authors == author:
+                return i.name,i.year
 
     def group_by_year(self,year):
-        pass
-
+        for i in self.books:
+            if i.year == year:
+                print('Test')
     def __repr__(self) -> str:
         return f'{self.name}, {self.books}, {self.authors}'
 
@@ -58,7 +61,7 @@ class Library:
 class Book:
     a_books = 0
 
-    def __init__(self,name,year,author) -> None:
+    def __init__(self,name,year,author):
         self.name= name
         self.year = year
         self.authors = author
@@ -71,7 +74,7 @@ class Book:
 
 
 class Author:
-    def __init__(self,name,country,bh) -> None:
+    def __init__(self,name,country,bh):
         self.name = name
         self.country = country
         self.bh = bh
@@ -84,90 +87,63 @@ class Author:
         return f'{self.name}, {self.country}, {self.bh}'
 
 
-author_1 = Author('Test','test','29.04.1994')
-author_2 = Author('Test-1','test-1','30.08.1995')
-lib = Library('Slavuta library')
-print(lib.new_book('name1',1999,author_1))
-print(lib.new_book('name2',1995,author_2))
-print(lib.new_book('name3',1999,author_1))
-print(lib.new_book('name4',2000,author_2))
-print(Book.a_books)
-print(author_1.books)
-print(author_2.books)
-print(lib.group_by_author(author_1))
-print(lib.group_by_author(author_2))
-print(lib.group_by_year(1999))
 
+#Task-4
+def gcd(m,n):
+    while m%n != 0:
+        oldm = m
+        oldn = n
 
-   
+        m = oldn
+        n = oldm%oldn
+    return n
 
+class Fraction:
+    def __init__(self,top,bottom):
+         self.num = top
+         self.den = bottom
 
+    def __str__(self):
+         return str(self.num)+"/"+str(self.den)
 
+    def show(self):
+         print(self.num,"/",self.den)
 
-class MyNum:
-    def __init__(self, value,value1):
-        self.value = value
-        self.value1 = value1
-
-
-    def __add__(self, other,value1):
-        if not isinstance(other,value1, type(self)):
-                raise ValueError
-        else:
-            r = MyNum(self.value+self.value)
-            r_1 = MyNum(other.value+other.value1)
-
-        def __str__(self):
-            return f"<MyNum: {self.value+self.value1}>"
-        
-        def __repr__(self):
-            return self.__str__()
-
-    def __sub__(self, other,value1):
-        if not isinstance(other,value1, type(self)):
-                raise ValueError
-        else:
-            r = MyNum(self.value+self.value)
-            r_1 = MyNum(other.value-other.value1)
-        
+    def __add__(self,otherfraction):
+         newnum = self.num*otherfraction.den + \
+                      self.den*otherfraction.num
+         newden = self.den * otherfraction.den
+         common = gcd(newnum,newden)
+         return Fraction(newnum//common,newden//common)
     
-        def __str__(self):
-            return f"<MyNum: {self.value-self.value1}>"
+    def __sub__(self,otherfraciton):
+        newnum = self.num*otherfraciton.den - self.den*otherfraciton.den
+        newden = self.den * otherfraciton.den
+
+        common = gcd(newnum,newden)
+
+        return Fraction(newnum//common,newden//common)
+
+    def __mul__(self,other):
+        newnum = self.num * other.num
+        newden = self.den + other.den
+
+        common = gcd(newnum,newden)
+
+        return Fraction(newnum//common,newden//common)    
+
+    def __truediv__(self,other):
+        newnum = self.num * other.den
+        newden = self.den + other.num
+
+        common = gcd(newnum,newden)
+
+        return Fraction(newnum//common,newden//common)    
+
         
-        def __repr__(self):
-            return self.__str__()
-
-    def __mul__(self, other):
-        if not isinstance(other, type(self)):
-            raise ValueError
-
-        def __str__(self):
-            return f"<MyNum: {self.value*self.value1}>"
-        
-        def __repr__(self):
-            return self.__str__()
-
-    def __truediv__(self, other):
-        if not isinstance(other, type(self)):
-            raise ValueError
-
-        def __str__(self):
-            return f"<MyNum: {self.value/self.value1}>"
-    
-        def __repr__(self):
-            return self.__str__()
 
 
-if __name__ == "__main__":
-    x = MyNum(1,2)
-    y = MyNum(1,4)
-    print(x)
-    print(y)
-   # print(x+y)
-#   print(x+y==MyNum(3,4))
-
-
-
-
-
-
+x = Fraction(1,2)
+y = Fraction(2,3)
+print(x+y)
+print(x == y)
